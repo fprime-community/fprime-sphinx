@@ -1,0 +1,11 @@
+<telemetry>
+
+  <channel
+    id="0x00"
+    name="FSWInfo_SRAMBootCount"
+    data_type="U32"
+    abbrev="FNFO-0000"
+  >
+    <comment>Number of times SRAM has booted since last hard reset</comment>
+  </channel>
+</telemetry>

@@ -1,0 +1,925 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../Autocoders/Python/schema/ISF/topology_schema.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<assembly name = "App">
+
+    <!-- Immport component declarations -->
+
+    <import_component_type>Svc/ActiveRateGroup/ActiveRateGroupComponentAi.xml</import_component_type>
+    <import_component_type>App/PingReceiver/PingReceiverComponentAi.xml</import_component_type>
+    <import_component_type>Svc/TlmChan/TlmChanComponentAi.xml</import_component_type>
+    <import_component_type>Svc/CmdDispatcher/CommandDispatcherComponentAi.xml</import_component_type>
+    <import_component_type>Svc/PrmDb/PrmDbComponentAi.xml</import_component_type>
+    <import_component_type>Svc/ActiveRateGroup/ActiveRateGroupComponentAi.xml</import_component_type>
+    <import_component_type>Svc/CmdSequencer/CmdSequencerComponentAi.xml</import_component_type>
+    <import_component_type>Svc/ActiveRateGroup/ActiveRateGroupComponentAi.xml</import_component_type>
+    <import_component_type>Svc/FileUplink/FileUplinkComponentAi.xml</import_component_type>
+    <import_component_type>Svc/BufferManager/BufferManagerComponentAi.xml</import_component_type>
+    <import_component_type>Svc/Health/HealthComponentAi.xml</import_component_type>
+    <import_component_type>Svc/BufferManager/BufferManagerComponentAi.xml</import_component_type>
+    <import_component_type>Svc/ActiveLogger/ActiveLoggerComponentAi.xml</import_component_type>
+    <import_component_type>Svc/Time/TimeComponentAi.xml</import_component_type>
+    <import_component_type>Svc/RateGroupDriver/RateGroupDriverComponentAi.xml</import_component_type>
+
+    <import_component_type>Svc/FileDownlink/FileDownlinkComponentAi.xml</import_component_type>
+    <import_component_type>Svc/PassiveConsoleTextLogger/PassiveTextLoggerComponentAi.xml</import_component_type>
+    <import_component_type>Svc/GroundInterface/GroundInterfaceComponentAi.xml</import_component_type>
+    <import_component_type>fprime-sphinx-drivers/SphinxTime/SphinxTimeComponentAi.xml</import_component_type>
+    <import_component_type>fprime-sphinx-drivers/FPGADriver/FPGADriverComponentAi.xml</import_component_type>
+    <import_component_type>fprime-sphinx-drivers/UartDriver/UartDriverComponentAi.xml</import_component_type>
+    <import_component_type>fprime-sphinx-drivers/ADC/ADCComponentAi.xml</import_component_type>
+    <import_component_type>fprime-sphinx-drivers/SPIDriverGeneric/SPIDriverGenericComponentAi.xml</import_component_type>
+    <import_component_type>fprime-sphinx-drivers/FPGASPIDriver/FPGASPIDriverComponentAi.xml</import_component_type>
+    <import_component_type>fprime-sphinx-drivers/SphinxUartOnboardDriver/SphinxUartOnboardDriverComponentAi.xml</import_component_type>
+    <import_component_type>fprime-sphinx-drivers/GPIODriver/GPIODriverComponentAi.xml</import_component_type>
+    <import_component_type>fprime-sphinx-drivers/FpgaGpioDriver/FpgaGpioDriverComponentAi.xml</import_component_type>
+
+    <import_component_type>App/IdleTask/IdleTaskComponentAi.xml</import_component_type>
+    <import_component_type>App/FSWInfo/FSWInfoComponentAi.xml</import_component_type>
+    <import_component_type>App/FatalHandler/FatalHandlerComponentAi.xml</import_component_type>
+    <import_component_type>App/DriverTest/DriverTestComponentAi.xml</import_component_type>
+
+    <!-- Declare component instances - must match names in Components.hpp -->
+
+    <!-- Core C&DH Components -->
+    <instance namespace="Svc" name="cmdDisp" type="CommandDispatcher" base_id="1"  base_id_window="20" />
+    <instance namespace="Svc" name="chanTlm" type="TlmChan" base_id="21"  base_id_window="20" />
+    <instance namespace="Svc" name="prmDb" type="PrmDb" base_id="41"  base_id_window="20" />
+    <instance namespace="Svc" name="cmdSeq" type="CmdSequencer" base_id="61"  base_id_window="23" />
+    <instance namespace="Svc" name="eventLogger" type="ActiveLogger" base_id="91"  base_id_window="20" />
+    <instance namespace="Svc" name="health" type="Health" base_id="111"  base_id_window="20" />
+    <instance namespace="Svc" name="fileUplink" type="FileUplink" base_id="131"  base_id_window="20" />
+    <instance namespace="Svc" name="fileUplinkBufferManager" type="BufferManager" base_id="151"  base_id_window="20" />
+    <instance namespace="Svc" name="fileDownlink" type="FileDownlink" base_id="171"  base_id_window="20" />
+    <instance namespace="Svc" name="fileDownlinkBufferManager" type="BufferManager" base_id="191"  base_id_window="20" />
+    <instance namespace="Svc" name="textLogger" type="PassiveTextLogger" base_id="211"  base_id_window="20" />
+    <instance namespace="Svc" name="groundIf" type="GroundInterface" base_id="231"  base_id_window="20" />
+    <instance namespace="Drv" name="sphinxTime" type="SphinxTime" base_id="251"  base_id_window="20" />
+
+
+    <!-- Communications driver. May be swapped with other comm drivers like UART -->
+    <instance namespace="Drv" name="uartDriver" type="UartDriver" base_id="271" base_id_window="20" />
+
+
+    <!-- Rate Group Components -->
+
+    <instance namespace="Svc" name="rateGroupDriverComp" type="RateGroupDriver" base_id="291"  base_id_window="20" />
+    <instance namespace="Svc" name="rateGroup1Comp" type="ActiveRateGroup" base_id="311"  base_id_window="20" />
+    <instance namespace="Svc" name="rateGroup2Comp" type="ActiveRateGroup" base_id="331"  base_id_window="20" />
+    <instance namespace="Svc" name="rateGroup3Comp" type="ActiveRateGroup" base_id="351"  base_id_window="20" />
+    <instance namespace="Svc" name="rateGroup4Comp" type="ActiveRateGroup" base_id="371"  base_id_window="20" />
+
+    <!-- Apperence Example Components -->
+
+    <instance namespace="App" name="pingRcvr" type="PingReceiver" base_id="411"  base_id_window="20" />
+    <instance namespace="Drv" name="fpgaDriver" type="FPGADriver" base_id="531"  base_id_window="20" />
+
+    <!-- Additional Sphinx Driver Components -->
+    <instance namespace="Drv" name="adc" type="ADC" base_id="551"  base_id_window="20" />
+    <instance namespace="Drv" name="fpgaGpioDriver" type="FpgaGpioDriver" base_id="651" base_id_window="20" />
+    <instance namespace="Drv" name="gpioDriver" type="GPIODriver" base_id="671" base_id_window="20"/>
+    <instance namespace="Drv" name="spiDriverGeneric" type="SPIDriverGeneric" base_id="691"  base_id_window="20" />
+    <instance namespace="Drv" name="fpgaSpiDriver" type="FPGASPIDriver" base_id="711"  base_id_window="20" />
+    <instance namespace="Drv" name="hw_uart" type="SphinxUartOnboardDriver" base_id="731"  base_id_window="20" />
+    <instance namespace="Drv" name="fw_uart" type="SphinxUartOnboardDriver" base_id="751"  base_id_window="20" />
+
+    <!-- fprime-sphinx App deployment components -->
+    <instance namespace="App" name="idleTask" type="IdleTask" base_id="931"  base_id_window="20" />
+    <instance namespace="App" name="fswInfo" type="FSWInfo" base_id="951"  base_id_window="40" />
+    <instance namespace="App" name="fatalHandler" type="FatalHandler" base_id="991"  base_id_window="20" />
+    <instance namespace="App" name="driverTest" type="DriverTest" base_id="1051"  base_id_window="40" />
+
+    <!-- Connections -->
+    <!-- Communications driver connections -->
+
+    <connection name = "CommunicationRead">
+        <source component = "groundIf" port = "readPoll" type = "Fw::BufferSend" num = "0"/>
+        <target component= "uartDriver" port = "ReadSerial" type = "Fw::BufferSend" num = "0"/>
+    </connection>
+    <connection name = "CommunicationWrite">
+        <source component="groundIf" port = "write" type = "Fw::BufferSend" num = "0"/>
+        <target component="uartDriver" port ="WriteSerial" type ="Fw::BufferSend" num = "0"/>
+    </connection>
+    
+    <!-- Command Registration/Dispatch/Reply Connections -->
+   
+    <!-- Command Registration Ports - Registration port number must match dispatch port for each component -->
+
+    <connection name = "EventLoggerReg">
+         <source component = "eventLogger" port = "CmdReg" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "0"/>
+    </connection>
+    <connection name = "CmdDispReg">
+         <source component = "cmdDisp" port = "CmdReg" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "1"/>
+    </connection>
+    <connection name = "HealthReg">
+         <source component = "health" port = "CmdReg" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "2"/>
+    </connection>
+    <connection name = "PrmDbReg">
+         <source component = "prmDb" port = "CmdReg" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "3"/>
+    </connection>
+    <connection name = "CmdSeqReg">
+         <source component = "cmdSeq" port = "cmdRegOut" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "4"/>
+    </connection>
+    <connection name = "FileDownlinkReg">
+         <source component = "fileDownlink" port = "cmdRegOut" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "5"/>
+    </connection>
+    <connection name = "PingRcvReg">
+         <source component = "pingRcvr" port = "CmdReg" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "6"/>
+    </connection>
+    <connection name = "ADCReg">
+         <source component = "adc" port = "cmdReg" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "7"/>
+    </connection>
+    <connection name = "IdleTaskReg">
+         <source component = "idleTask" port = "cmdRegOut" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "8"/>
+    </connection>
+    <connection name = "FSWInfoReg">
+         <source component = "fswInfo" port = "cmdRegOut" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "9"/>
+    </connection>
+    <connection name = "FatalHandlerReg">
+         <source component = "fatalHandler" port = "cmdRegOut" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "10"/>
+    </connection>
+    <connection name = "DriverTestReg">
+         <source component = "driverTest" port = "cmdRegOut" type = "CmdReg" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "11"/>
+    </connection>
+
+    <!-- Command Dispatch Ports - Dispatch port number must match registration port for each component -->
+
+    <connection name = "EventLoggerDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "0"/>
+         <target component = "eventLogger" port = "CmdDisp" type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "CmdDispDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "1"/>
+         <target component = "cmdDisp" port = "CmdDisp" type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "HealthDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "2"/>
+         <target component = "health" port = "CmdDisp" type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "PrmDbDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "3"/>
+         <target component = "prmDb" port = "CmdDisp" type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "CmdSeqDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "4"/>
+         <target component = "cmdSeq"  port = "cmdIn"       type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "FileDownlinkDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "5"/>
+         <target component = "fileDownlink" port = "cmdIn" type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "PingRcvDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "6"/>
+         <target component = "pingRcvr" port = "CmdDisp" type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "ADCDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "7"/>
+         <target component = "adc" port = "cmdIn" type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "IdleTaskDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "8"/>
+         <target component = "idleTask" port = "cmdIn" type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "FSWInfoDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "9"/>
+         <target component = "fswInfo" port = "cmdIn" type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "FatalHandlerDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "10"/>
+         <target component = "fatalHandler" port = "cmdIn" type = "Cmd" num = "0"/>
+    </connection>
+    <connection name = "DriverTestDisp">
+         <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "11"/>
+         <target component = "driverTest" port = "cmdIn" type = "Cmd" num = "0"/>
+    </connection>
+
+   
+    <!-- Command Reply Ports - Go to the same response port on the dispatcher -->
+
+    <connection name = "EventLoggerReply">
+        <source component = "eventLogger" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+        <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "CmdSeqReply">
+        <source component = "cmdSeq" port = "cmdResponseOut" type = "CmdResponse" num = "0"/>
+        <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "PrmDbReply">
+        <source component = "prmDb" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+        <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "CmdDispReply">
+        <source component = "cmdDisp" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+        <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "HealthReply">
+        <source component = "health" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+        <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "FileDownlinkReply">
+        <source component = "fileDownlink" port = "cmdResponseOut" type = "CmdResponse" num = "0"/>
+        <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "PingRcvStat">
+         <source component = "pingRcvr" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "ADCStat">
+         <source component = "adc" port = "cmdResponse" type = "CmdResponse" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "IdleTaskStat">
+         <source component = "idleTask" port = "cmdResponseOut" type = "CmdResponse" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "FSWInfoStat">
+         <source component = "fswInfo" port = "cmdResponseOut" type = "CmdResponse" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "FatalHandlerStat">
+         <source component = "fatalHandler" port = "cmdResponseOut" type = "CmdResponse" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+    <connection name = "DriverTestStat">
+         <source component = "driverTest" port = "cmdResponseOut" type = "CmdResponse" num = "0"/>
+         <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
+    </connection>
+
+    <!-- Sequencer Connections - should not conflict with uplink port -->
+
+    <connection name = "SeqCompStatus">
+        <source component = "cmdDisp" port = "seqCmdStatus" type = "CmdResponse" num = "1"/>
+        <target component = "cmdSeq" port = "cmdResponseIn" type = "CmdResponse" num = "0"/>
+    </connection>
+    <!-- Input port number needs to be the same as previous dispatch -->
+    <connection name = "SeqCmdSend">
+        <source component = "cmdSeq" port = "comCmdOut" type = "Com" num = "0"/>
+        <target component = "cmdDisp" port = "seqCmdBuff" type = "Com" num = "1"/>
+    </connection>
+   
+    <!-- Event Logger Binary Connections -->
+   
+    <connection name = "groundIfLog">
+        <source component = "groundIf" port = "Log" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "PrmDbLog">
+        <source component = "prmDb" port = "Log" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "FileUplinkLog">
+        <source component = "fileUplink" port = "eventOut" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "EventLoggerLog">
+        <source component = "eventLogger" port = "Log" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "FileUplinkBufferManagerLog">
+        <source component = "fileUplinkBufferManager" port = "eventOut" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "CmdDispLog">
+        <source component = "cmdDisp" port = "Log" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "FileDownlinkBufferManagerLog">
+        <source component = "fileDownlinkBufferManager" port = "eventOut" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "CmdSeqLog">
+        <source component = "cmdSeq" port = "logOut" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "HealthLog">
+        <source component = "health" port = "Log" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "FileDownlinkLog">
+        <source component = "fileDownlink" port = "eventOut" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "RG1Ev">
+         <source component = "rateGroup1Comp" port = "Log" type = "Log" num = "0"/>
+         <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "RG2Ev">
+         <source component = "rateGroup2Comp" port = "Log" type = "Log" num = "0"/>
+         <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "RG3Ev">
+         <source component = "rateGroup3Comp" port = "Log" type = "Log" num = "0"/>
+         <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "RG4Ev">
+        <source component = "rateGroup4Comp" port = "Log" type = "Log" num = "0"/>
+        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "pingEvt">
+         <source component = "pingRcvr" port = "Log" type = "Log" num = "0"/>
+         <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name="SphinxTimeEvt">
+        <source component="sphinxTime" port = "logOut" type = "Log" num = "0"/>
+        <target component="eventLogger" port ="LogRecv" type ="Log" num = "0"/>
+    </connection>
+    <connection name="ADCEvt">
+        <source component="adc" port = "eventOut" type = "Log" num = "0"/>
+        <target component="eventLogger" port ="LogRecv" type ="Log" num = "0"/>
+    </connection>
+    <connection name="IdleTaskEvt">
+        <source component="idleTask" port = "eventOut" type = "Log" num = "0"/>
+        <target component="eventLogger" port ="LogRecv" type ="Log" num = "0"/>
+    </connection>
+    <connection name="FSWInfoEvt">
+        <source component="fswInfo" port = "eventOut" type = "Log" num = "0"/>
+        <target component="eventLogger" port ="LogRecv" type ="Log" num = "0"/>
+    </connection>
+    <connection name="FatalHandlerEvt">
+        <source component="fatalHandler" port = "eventOut" type = "Log" num = "0"/>
+        <target component="eventLogger" port ="LogRecv" type ="Log" num = "0"/>
+    </connection>
+     <connection name="DriverTestEvt">
+        <source component="driverTest" port = "eventOut" type = "Log" num = "0"/>
+        <target component="eventLogger" port ="LogRecv" type ="Log" num = "0"/>
+    </connection>
+
+    <!-- Event Logger Text Connections -->
+
+    <connection name = "CmdSeqTextLog">
+        <source component = "cmdSeq" port = "LogText" type = "LogText" num = "0"/>
+        <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+    <connection name = "EventLoggerTextLog">
+        <source component = "eventLogger" port = "LogText" type = "LogText" num = "0"/>
+        <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+    <connection name = "HealthTextLog">
+        <source component = "health" port = "LogText" type = "LogText" num = "0"/>
+        <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+    <connection name = "groundIfTextLog">
+        <source component = "groundIf" port = "LogText" type = "LogText" num = "0"/>
+        <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+    <connection name = "PrmDbTextLogger">
+        <source component = "prmDb" port = "LogText" type = "LogText" num = "0"/>
+        <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+    <connection name = "CmdDispTextLogger">
+        <source component = "cmdDisp" port = "LogText" type = "LogText" num = "0"/>
+        <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+    <connection name = "Rg1Text">
+         <source component = "rateGroup1Comp" port = "LogText" type = "LogText" num = "0"/>
+         <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+    <connection name = "Rg2Text">
+         <source component = "rateGroup2Comp" port = "LogText" type = "LogText" num = "0"/>
+         <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+    <connection name = "Rg3Text">
+         <source component = "rateGroup3Comp" port = "LogText" type = "LogText" num = "0"/>
+         <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+    <connection name = "Rg4Text">
+        <source component = "rateGroup4Comp" port = "LogText" type = "LogText" num = "0"/>
+        <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+    <connection name = "PingText">
+        <source component = "pingRcvr" port = "LogText" type = "LogText" num = "0"/>
+        <target component = "textLogger" port = "TextLogger" type = "LogText" num = "0"/>
+    </connection>
+
+    <!-- Telemetry Connections -->
+
+    <connection name = "fileDownlinkTlm">
+        <source component = "fileDownlink" port = "tlmOut" type = "Tlm" num = "0"/>
+        <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "FileUplinkBufferManagerTlm">
+        <source component = "fileUplinkBufferManager" port = "tlmOut" type = "Tlm" num = "0"/>
+        <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "FileUplinkTlm">
+        <source component = "fileUplink" port = "tlmOut" type = "Tlm" num = "0"/>
+        <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "FileDownlinkBufferManagerTlm">
+        <source component = "fileDownlinkBufferManager" port = "tlmOut" type = "Tlm" num = "0"/>
+        <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "cmdSeqTlm">
+        <source component = "cmdSeq" port = "tlmOut" type = "Tlm" num = "0"/>
+        <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "cmdDispTlm">
+        <source component = "cmdDisp" port = "Tlm" type = "Tlm" num = "0"/>
+        <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "Rg1Tlm">
+         <source component = "rateGroup1Comp" port = "Tlm" type = "Tlm" num = "0"/>
+         <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "Rg2Tlm">
+         <source component = "rateGroup2Comp" port = "Tlm" type = "Tlm" num = "0"/>
+         <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "Rg3Tlm">
+         <source component = "rateGroup3Comp" port = "Tlm" type = "Tlm" num = "0"/>
+         <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "Rg4Tlm">
+        <source component = "rateGroup4Comp" port = "Tlm" type = "Tlm" num = "0"/>
+        <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "healthTlm">
+        <source component = "health" port = "Tlm" type = "Tlm" num = "0"/>
+        <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "pingTlm">
+         <source component = "pingRcvr" port = "Tlm" type = "Tlm" num = "0"/>
+         <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
+    </connection>
+    <connection name = "SphinxTimeTlm">
+        <source component="sphinxTime" port = "tlmOut" type="Fw::Tlm" num="0"/>
+        <target component="chanTlm" port="TlmRecv" type="Tlm" num="0"/>
+    </connection>
+    <connection name = "ADCTlm">
+        <source component="adc" port = "tlmOut" type="Fw::Tlm" num="0"/>
+        <target component="chanTlm" port="TlmRecv" type="Tlm" num="0"/>
+    </connection>
+    <connection name = "IdleTaskTlm">
+        <source component="idleTask" port = "tlmOut" type="Fw::Tlm" num="0"/>
+        <target component="chanTlm" port="TlmRecv" type="Tlm" num="0"/>
+    </connection>
+    <connection name = "FSWInfoTlm">
+        <source component="fswInfo" port = "tlmOut" type="Fw::Tlm" num="0"/>
+        <target component="chanTlm" port="TlmRecv" type="Tlm" num="0"/>
+    </connection>
+    <connection name = "FatalHandlerTlm">
+        <source component="fatalHandler" port = "tlmOut" type="Fw::Tlm" num="0"/>
+        <target component="chanTlm" port="TlmRecv" type="Tlm" num="0"/>
+    </connection>
+
+    <!-- Parameter Connections -->
+
+    <connection name = "IdleTaskPrmGet">
+         <source component = "idleTask" port = "prmGet" type = "PrmGet" num = "0"/>
+         <target component = "prmDb" port = "getPrm" type = "PrmGet" num = "0"/>
+    </connection>
+    <connection name = "IdleTaskPrmSet">
+         <source component = "idleTask" port = "prmSet" type = "PrmSet" num = "0"/>
+         <target component = "prmDb" port = "setPrm" type = "PrmSet" num = "0"/>
+    </connection>
+
+    <!-- Time Connections -->
+
+    <connection name = "prmDbTime">
+        <source component = "prmDb" port = "Time" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "eventLoggerTime">
+        <source component = "eventLogger" port = "Time" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "rg1Time">
+         <source component = "rateGroup1Comp" port = "Time" type = "Time" num = "0"/>
+         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "rg2Time">
+         <source component = "rateGroup2Comp" port = "Time" type = "Time" num = "0"/>
+         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "rg3Time">
+         <source component = "rateGroup3Comp" port = "Time" type = "Time" num = "0"/>
+         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "rg4Time">
+        <source component = "rateGroup4Comp" port = "Time" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "fileDownlinkBufferManagerTime">
+        <source component = "fileDownlinkBufferManager" port = "timeCaller" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "cmdSeqTime">
+        <source component = "cmdSeq" port = "timeCaller" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "healthTime">
+        <source component = "health" port = "Time" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "fileUplinkBufferManagerTime">
+        <source component = "fileUplinkBufferManager" port = "timeCaller" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "cmdDispTime">
+        <source component = "cmdDisp" port = "Time" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "fileUplinkTime">
+        <source component = "fileUplink" port = "timeCaller" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "fileDownlinkTmp">
+        <source component = "fileDownlink" port = "timeCaller" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "groundIfTime">
+        <source component = "groundIf" port = "Time" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "pingTime">
+         <source component = "pingRcvr" port = "Time" type = "Time" num = "0"/>
+         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "adcTime">
+         <source component = "adc" port = "timeCaller" type = "Time" num = "0"/>
+         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "idleTaskTime">
+         <source component = "idleTask" port = "sphinx_time" type = "Time" num = "0"/>
+         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "fswInfoTime">
+         <source component = "fswInfo" port = "timeCaller" type = "Time" num = "0"/>
+         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "fatalHandlerTime">
+         <source component = "fatalHandler" port = "timeCaller" type = "Time" num = "0"/>
+         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "driverTestTime">
+         <source component = "driverTest" port = "timeCaller" type = "Time" num = "0"/>
+         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+
+    <!-- RTI sphinxtime schedIn Connection -->
+    <connection name ="FPGADriverTime">
+        <source component="fpgaDriver" port = "timeRTIOut" type = "Svc::Sched" num ="0"/>
+        <target component="sphinxTime" port = "schedIn" type = "Svc::Sched" num = "0"/>
+    </connection>
+
+    <!-- Rate Group Connections -->
+   
+    <!-- FPGADriver Timer Connection -->
+    <connection name ="FPGADriverClock">
+        <source component="fpgaDriver" port = "cycleOut" type = "Svc::Cycle" num = "0"/>
+        <target component="rateGroupDriverComp" port ="CycleIn" type="Cycle" num = "0"/>
+    </connection>
+
+    <!-- Rate Group 1 -->
+    <connection name = "rateGroup1DriverComp">
+        <source component = "rateGroupDriverComp" port = "CycleOut" type = "Cycle" num = "0"/>
+        <target component = "rateGroup1Comp" port = "CycleIn" type = "Cycle" num = "0"/>
+    </connection>
+    <connection name = "Rg1ChTlm">
+         <source component = "rateGroup1Comp" port = "RateGroupMemberOut" type = "Sched" num = "0"/>
+         <target component = "chanTlm" port = "Run" type = "Sched" num = "0"/>
+    </connection>
+
+    <!-- Rate Group 2 -->
+    <connection name = "Rg2Drv">
+        <source component = "rateGroupDriverComp" port = "CycleOut" type = "Cycle" num = "1"/>
+        <target component = "rateGroup2Comp" port = "CycleIn" type = "Cycle" num = "0"/>
+    </connection>      
+    <connection name = "Rg2Seq">
+         <source component = "rateGroup2Comp" port = "RateGroupMemberOut" type = "Sched" num = "0"/>
+         <target component = "cmdSeq" port = "schedIn" type = "Sched" num = "0"/>
+    </connection>
+   
+    <!-- Rate Group 3 -->
+    <connection name = "rateGroup3DriverComp">
+        <source component = "rateGroupDriverComp" port = "CycleOut" type = "Cycle" num = "2"/>
+        <target component = "rateGroup3Comp" port = "CycleIn" type = "Cycle" num = "0"/>
+    </connection>
+    
+    <connection name = "Rg3Health">
+         <source component = "rateGroup3Comp" port = "RateGroupMemberOut" type = "Sched" num = "0"/>
+         <target component = "health" port = "Run" type = "Sched" num = "0"/>
+    </connection>
+    <connection name = "Rg3GndIf">
+         <source component = "rateGroup3Comp" port = "RateGroupMemberOut" type = "Sched" num = "1"/>
+         <target component = "groundIf" port = "schedIn" type = "Sched" num = "0"/>
+    </connection>
+    <connection name = "Rg3DriverTest">
+         <source component = "rateGroup3Comp" port = "RateGroupMemberOut" type = "Sched" num = "2"/>
+         <target component = "driverTest" port = "schedIn" type = "Sched" num = "0"/>
+    </connection>
+
+    <!-- Rate Group 4 -->
+
+    <connection name = "rateGroup4DriverComp">
+        <source component = "rateGroupDriverComp" port = "CycleOut" type = "Cycle" num = "3"/>
+        <target component = "rateGroup4Comp" port = "CycleIn" type = "Cycle" num = "0"/>
+    </connection>
+    <connection name = "Rg4ADC">
+        <source component = "rateGroup4Comp" port = "RateGroupMemberOut" type = "Sched" num = "0"/>
+        <target component = "adc" port = "schedIn" type = "Sched" num = "0"/>
+    </connection>
+    <connection name = "Rg4FSWInfo">
+        <source component = "rateGroup4Comp" port = "RateGroupMemberOut" type = "Sched" num = "1"/>
+        <target component = "fswInfo" port = "schedIn" type = "Sched" num = "0"/>
+    </connection>
+
+
+    <!-- Health Connections -->
+
+    <!-- The PingSend output port number should match the PingReturn input port number -->
+    <!-- Each port number pair must be unique -->
+    <!-- This order must match the pingEntries[] table in App/Top/Topology.cpp -->
+
+    <connection name = "Rg1PingSend">
+         <source component = "rateGroup1Comp" port = "PingOut" type = "Ping" num = "0"/>
+         <target component = "health" port = "PingReturn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "Rg1PingRecv">
+         <source component = "health" port = "PingSend" type = "Ping" num = "0"/>
+         <target component = "rateGroup1Comp" port = "PingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "Rg2PingSend">
+         <source component = "health" port = "PingSend" type = "Ping" num = "1"/>
+         <target component = "rateGroup2Comp" port = "PingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "Rg2PingRecv">
+         <source component = "rateGroup2Comp" port = "PingOut" type = "Ping" num = "0"/>
+         <target component = "health" port = "PingReturn" type = "Ping" num = "1"/>
+    </connection>
+    <connection name = "Rg3PingSend">
+         <source component = "health" port = "PingSend" type = "Ping" num = "2"/>
+         <target component = "rateGroup3Comp" port = "PingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "Rg3PingRecv">
+         <source component = "rateGroup3Comp" port = "PingOut" type = "Ping" num = "0"/>
+         <target component = "health" port = "PingReturn" type = "Ping" num = "2"/>
+    </connection>
+    <connection name = "Rg4PingSend">
+        <source component = "health" port = "PingSend" type = "Ping" num = "3"/>
+        <target component = "rateGroup4Comp" port = "PingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "Rg4PingRecv">
+        <source component = "rateGroup4Comp" port = "PingOut" type = "Ping" num = "0"/>
+        <target component = "health" port = "PingReturn" type = "Ping" num = "3"/>
+    </connection>
+    <connection name = "cmdDispPingIn">
+        <source component = "health" port = "PingSend" type = "Ping" num = "4"/>
+        <target component = "cmdDisp" port = "pingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "cmdDispPingRecv">
+        <source component = "cmdDisp" port = "pingOut" type = "Ping" num = "0"/>
+        <target component = "health" port = "PingReturn" type = "Ping" num = "4"/>
+    </connection>
+    <connection name = "eventLoggerPingSend">
+        <source component = "health" port = "PingSend" type = "Ping" num = "5"/>
+        <target component = "eventLogger" port = "pingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "eventLoggerPingRecv">
+        <source component = "eventLogger" port = "pingOut" type = "Ping" num = "0"/>
+        <target component = "health" port = "PingReturn" type = "Ping" num = "5"/>
+    </connection>
+    <connection name = "cmdSeqPingSend">
+        <source component = "health" port = "PingSend" type = "Ping" num = "6"/>
+        <target component = "cmdSeq" port = "pingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "cmdSeqPingRecv">
+        <source component = "cmdSeq" port = "pingOut" type = "Ping" num = "0"/>
+        <target component = "health" port = "PingReturn" type = "Ping" num = "6"/>
+    </connection>
+    <connection name = "chanTlmPingSend">
+        <source component = "health" port = "PingSend" type = "Ping" num = "7"/>
+        <target component = "chanTlm" port = "pingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "chanTlmPingRecv">
+        <source component = "chanTlm" port = "pingOut" type = "Ping" num = "0"/>
+        <target component = "health" port = "PingReturn" type = "Ping" num = "7"/>
+    </connection>
+    <connection name = "prmDbPingSend">
+        <source component = "health" port = "PingSend" type = "Ping" num = "8"/>
+        <target component = "prmDb" port = "pingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "prmDbPingRecv">
+        <source component = "prmDb" port = "pingOut" type = "Ping" num = "0"/>
+        <target component = "health" port = "PingReturn" type = "Ping" num = "8"/>
+    </connection>
+    <connection name = "fileUplinkPingSend">
+        <source component = "health" port = "PingSend" type = "Ping" num = "9"/>
+        <target component = "fileUplink" port = "pingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "fileUplinkPingRecv">
+        <source component = "fileUplink" port = "pingOut" type = "Ping" num = "0"/>
+        <target component = "health" port = "PingReturn" type = "Ping" num = "9"/>
+    </connection>
+    <connection name = "fileDownlinkPingSend">
+        <source component = "health" port = "PingSend" type = "Ping" num = "10"/>
+        <target component = "fileDownlink" port = "pingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "fileDownlinkPingRecv">
+        <source component = "fileDownlink" port = "pingOut" type = "Ping" num = "0"/>
+        <target component = "health" port = "PingReturn" type = "Ping" num = "10"/>
+    </connection>
+    <connection name = "PingRcvPingRecv">
+         <source component = "health" port = "PingSend" type = "Ping" num = "11"/>
+         <target component = "pingRcvr" port = "PingIn" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "PingRcvPingSend">
+         <source component = "pingRcvr" port = "PingOut" type = "Ping" num = "0"/>
+         <target component = "health" port = "PingReturn" type = "Ping" num = "11"/>
+    </connection>
+    <connection name = "adcPingRecv">
+         <source component = "health" port = "PingSend" type = "Ping" num = "12"/>
+         <target component = "adc" port = "PingRecv" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "adcPingSend">
+         <source component = "adc" port = "PingResponse" type = "Ping" num = "0"/>
+         <target component = "health" port = "PingReturn" type = "Ping" num = "12"/>
+    </connection>
+    <connection name = "fswInfoPingRecv">
+         <source component = "health" port = "PingSend" type = "Ping" num = "13"/>
+         <target component = "fswInfo" port = "PingRecv" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "fswInfoPingSend">
+         <source component = "fswInfo" port = "PingResponse" type = "Ping" num = "0"/>
+         <target component = "health" port = "PingReturn" type = "Ping" num = "13"/>
+    </connection>
+    <connection name = "fatalHandlerPingRecv">
+         <source component = "health" port = "PingSend" type = "Ping" num = "14"/>
+         <target component = "fatalHandler" port = "PingRecv" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "fatalHandlerPingSend">
+         <source component = "fatalHandler" port = "PingResponse" type = "Ping" num = "0"/>
+         <target component = "health" port = "PingReturn" type = "Ping" num = "14"/>
+    </connection>
+    <connection name = "driverTestPingRecv">
+         <source component = "health" port = "PingSend" type = "Ping" num = "15"/>
+         <target component = "driverTest" port = "PingRecv" type = "Ping" num = "0"/>
+    </connection>
+    <connection name = "driverTestPingSend">
+         <source component = "driverTest" port = "PingResponse" type = "Ping" num = "0"/>
+         <target component = "health" port = "PingReturn" type = "Ping" num = "15"/>
+    </connection>
+
+    <!-- Socket Ground System Connections -->
+
+    <!-- Uplink Connections -->
+
+    <!-- Uplink connection to command dispatcher should not conflict with command sequencer -->
+    <connection name = "cmdDispPkts">
+        <source component = "groundIf" port = "uplinkPort" type = "Com" num = "0"/>
+        <target component = "cmdDisp" port = "seqCmdBuff" type = "Com" num = "0"/>
+    </connection>
+
+    <connection name = "groundIfIfFileUplinkBufferGet">
+        <source component = "groundIf" port = "fileUplinkBufferGet" type = "BufferGet" num = "0"/>
+        <target component = "fileUplinkBufferManager" port = "bufferGetCallee" type = "BufferGet" num = "0"/>
+    </connection>
+    <connection name = "fileUplinkBuffIn">
+        <source component = "fileUplink" port = "bufferSendOut" type = "BufferSend" num = "0"/>
+        <target component = "fileUplinkBufferManager" port = "bufferSendIn" type = "BufferSend" num = "0"/>
+    </connection>
+    <connection name = "groundIfIfFileUplinkBufferSend">
+        <source component = "groundIf" port = "fileUplinkBufferSendOut" type = "BufferSend" num = "0"/>
+        <target component = "fileUplink" port = "bufferSendIn" type = "BufferSend" num = "0"/>
+    </connection>
+
+    <!-- Downlink Connections -->
+
+    <connection name = "eventLoggerPkts">
+        <source component = "eventLogger" port = "PktSend" type = "Com" num = "0"/>
+        <target component = "groundIf" port = "downlinkPort" type = "Com" num = "0"/>
+    </connection>
+   
+    <connection name = "chanTlmPkts">
+        <source component = "chanTlm" port = "PktSend" type = "Com" num = "0"/>
+        <target component = "groundIf" port = "downlinkPort" type = "Com" num = "0"/>
+    </connection>
+   
+    <connection name = "fileDownlinkBufferGet">
+        <source component = "fileDownlink" port = "bufferGetCaller" type = "BufferGet" num = "0"/>
+        <target component = "fileDownlinkBufferManager" port = "bufferGetCallee" type = "BufferGet" num = "0"/>
+    </connection>
+    <connection name = "fileDownlinkBufferManagerBufferReturn">
+        <source component = "groundIf" port = "fileDownlinkBufferSendOut" type = "BufferSend" num = "0"/>
+        <target component = "fileDownlinkBufferManager" port = "bufferSendIn" type = "BufferSend" num = "0"/>
+    </connection>
+    <connection name = "fileDownlinkBufferSend">
+        <source component = "fileDownlink" port = "bufferSendOut" type = "BufferSend" num = "0"/>
+        <target component = "groundIf" port = "fileDownlinkBufferSendIn" type = "BufferSend" num = "0"/>
+    </connection>
+   
+    <!-- Fault Connections -->
+    <connection name = "eventLoggerFatalOut">
+        <source component = "eventLogger" port = "FatalAnnounce" type = "FatalEvent" num = "0"/>
+        <target component = "fatalHandler" port = "fatalReceive" type = "FatalEvent" num = "0"/>
+    </connection>
+
+    <!-- fswInfo Connections -->
+    <connection name = "FSWInfoSphinxTimeREL">
+	 <source component = "fswInfo" port = "timeREL" type = "SphinxTimeVal" num = "0"/>
+ 	 <target component = "sphinxTime" port = "timeInREL" type = "SphinxTimeVal" num = "0"/>
+    </connection>
+    <connection name = "FSWInfoSphinxTimeABS">
+	 <source component = "fswInfo" port = "timeABS" type = "SphinxTimeVal" num = "0"/>
+ 	 <target component = "sphinxTime" port = "timeInABS" type = "SphinxTimeVal" num = "0"/>
+    </connection>
+
+    <!-- driverTest Connections -->
+    <connection name = "DriverTestGpioSet">
+	    <source component = "driverTest" port = "gpioSet" type = "SphinxGPIO_WritePin" num = "0"/>
+ 	    <target component = "gpioDriver" port = "gpio_setPin" type = "SphinxGPIO_WritePin" num = "0"/>
+    </connection>
+    <connection name = "DriverTestGpioClear">
+	    <source component = "driverTest" port = "gpioClear" type = "SphinxGPIO_WritePin" num = "0"/>
+ 	    <target component = "gpioDriver" port = "gpio_clearPin" type = "SphinxGPIO_WritePin" num = "0"/>
+    </connection>
+    <connection name = "DriverTestGpioRead">
+      <source component = "driverTest" port = "gpioRead" type = "SphinxGPIO_ReadPin" num = "0"/>
+ 	    <target component = "gpioDriver" port = "gpio_readPin" type = "SphinxGPIO_ReadPin" num = "0"/>
+    </connection>
+
+    <connection name = "DriverTestHwUartLog">
+	    <source component = "hw_uart" port = "logOut" type = "Log" num = "0"/>
+ 	    <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "DriverTestHwUartTime">
+	    <source component = "hw_uart" port = "timeCaller" type = "Time" num = "0"/>
+ 	    <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "DriverTestHwUartRx">
+	    <source component = "driverTest" port = "hwUartRx" type = "SphinxUart_readPort" num = "0"/>
+ 	    <target component = "hw_uart" port = "read" type = "SphinxUart_readPort" num = "0"/>
+    </connection>
+    <connection name = "DriverTestHwUartTx">
+	    <source component = "driverTest" port = "hwUartTx" type = "SphinxUart_writePort" num = "0"/>
+ 	    <target component = "hw_uart" port = "write" type = "SphinxUart_writePort" num = "0"/>
+    </connection>
+
+    <connection name = "DriverTestFwUartLog">
+	    <source component = "fw_uart" port = "logOut" type = "Log" num = "0"/>
+ 	    <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
+    </connection>
+    <connection name = "DriverTestFwUartTime">
+	    <source component = "fw_uart" port = "timeCaller" type = "Time" num = "0"/>
+ 	    <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "DriverTestFwUartRx">
+	    <source component = "driverTest" port = "fwUartRx" type = "SphinxUart_readPort" num = "0"/>
+ 	    <target component = "fw_uart" port = "read" type = "SphinxUart_readPort" num = "0"/>
+    </connection>
+    <connection name = "DriverTestFwUartTx">
+	    <source component = "driverTest" port = "fwUartTx" type = "SphinxUart_writePort" num = "0"/>
+ 	    <target component = "fw_uart" port = "write" type = "SphinxUart_writePort" num = "0"/>
+    </connection>
+
+    <connection name = "DriverTestFpgaGpioSet">
+	     <source component = "driverTest" port = "fpgaGpioSet" type = "SphinxGPIO_WritePin" num = "0"/>
+ 	     <target component = "fpgaGpioDriver" port = "setPin" type = "SphinxGPIO_WritePin" num = "0"/>
+    </connection>
+    <connection name = "DriverTestFpgaGpioClear">
+	     <source component = "driverTest" port = "fpgaGpioClear" type = "SphinxGPIO_WritePin" num = "0"/>
+ 	     <target component = "fpgaGpioDriver" port = "clearPin" type = "SphinxGPIO_WritePin" num = "0"/>
+    </connection>
+    <connection name = "DriverTestFpgaGpioRead">
+	     <source component = "driverTest" port = "fpgaGpioRead" type = "SphinxGPIO_ReadPin" num = "0"/>
+ 	     <target component = "fpgaGpioDriver" port = "readPin" type = "SphinxGPIO_ReadPin" num = "0"/>
+    </connection>
+
+    <connection name = "DriverTestFpgaSpiTime">
+	    <source component = "fpgaSpiDriver" port = "Time" type = "Time" num = "0"/>
+ 	    <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "DriverTestFpgaSpiRw">
+	    <source component = "driverTest" port = "fpgaSpiRw" type = "SphinxFPGASPI_RW" num = "0"/>
+ 	    <target component = "fpgaSpiDriver" port = "read_write" type = "SphinxFPGASPI_RW" num = "0"/>
+    </connection>
+
+    <connection name = "DriverTestGenericSpiTime">
+	    <source component = "spiDriverGeneric" port = "timeCaller" type = "Time" num = "0"/>
+ 	    <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+    <connection name = "DriverTestGenericSpiRw8">
+	    <source component = "driverTest" port = "spiRw8" type = "SphinxSPI_RW_Generic" num = "0"/>
+ 	    <target component = "spiDriverGeneric" port = "read_write_8" type = "SphinxSPI_RW_Generic" num = "0"/>
+    </connection>
+    <connection name = "DriverTestGenericSpiUnclaim">
+	    <source component = "driverTest" port = "spiUnclaim" type = "SphinxSPI_Unclaim" num = "0"/>
+ 	    <target component = "spiDriverGeneric" port = "spi_unclaim" type = "SphinxSPI_Unclaim" num = "0"/>
+    </connection>
+    <connection name = "DriverTestGenericSpiClaim">
+	    <source component = "driverTest" port = "spiClaim" type = "SphinxSPI_Claim" num = "0"/>
+ 	    <target component = "spiDriverGeneric" port = "spi_claim" type = "SphinxSPI_Claim" num = "0"/>
+    </connection>
+
+</assembly>

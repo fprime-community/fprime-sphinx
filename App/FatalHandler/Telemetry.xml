@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="file:../xml/ISF_Component_Schema.rnc" type="compact"?>
+
+<telemetry>
+
+  <channel
+    id="0x00"
+    name="AppFatal_BytesReceived"
+    data_type="U32"
+    abbrev="AFNF-0000"
+  >
+    <comment>The total number of bytes received by FatalHandler</comment>
+  </channel>
+
+</telemetry>

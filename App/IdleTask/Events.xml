@@ -1,0 +1,87 @@
+<events>
+  <event id="0" name="IdleTask_PartitionFlagChecksumFailure" severity="WARNING_HI" format_string="Checksum of partition flags failed on soft-reboot. Clearing OCM.">
+    <comment>
+      Calculating checksum on partition flags failed.
+    </comment>
+  </event>
+  <event id="1" name="IdleTask_HardRebootDetected" severity="ACTIVITY_HI" format_string="Hard reboot detected, clearing OCM.">
+    <comment>
+      Hard-reboot EVR
+    </comment>
+  </event>
+  <event
+    id="2"
+    name="IdleTask_FailedToDeserializePwrOnResetCnt"
+    severity="WARNING_LO"
+    format_string="Failed to deserialize power on reset count retrieved from PrmDb, status %d" 
+  >
+  <comment>Failed to deserialize power on reset count from buffer read from PrmDb</comment>
+    <args>
+      <arg
+        name="serializeStatus"
+        type="I32"
+      >
+        <comment>Status returned from deserialize call</comment>
+      </arg>
+    </args>
+  </event>
+  <event
+    id="3"
+    name="IdleTask_PowerOnReset_Val_Invalid"
+    severity="WARNING_HI"
+    format_string="Failed to set power on reset count value to %u as it is above allowable max value of %u" 
+  >
+  <comment>Failed to set power on reset count value</comment>
+    <args>
+      <arg
+        name="value"
+        type="U32"
+      >
+        <comment>Power on reset count value failed to set</comment>
+      </arg>
+      <arg
+        name="max"
+        type="U32"
+      >
+        <comment>Max allowable power on reset count value</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="4" name="IdleTask_PwrOnResetCnt_WrapAround" severity="WARNING_LO" format_string="Power on reset count value reached max allowable value and was wrapped around for increment">
+    <comment>
+      Power on reset count wrap around occured
+    </comment>
+  </event>
+  <event
+    id="5"
+    name="IdleTask_PowerOnReset_Val"
+    severity="ACTIVITY_HI"
+    format_string="Current value of power on reset (POR) count, i.e. hard boot count is %u" 
+  >
+  <comment>Power on reset count value</comment>
+    <args>
+      <arg
+        name="value"
+        type="U32"
+      >
+        <comment>Power on reset count value</comment>
+      </arg>
+    </args>
+  </event>
+  <event
+    id="6"
+    name="IdleTask_SBE_UncorrectedInMem"
+    severity="WARNING_HI"
+    format_string="SBE left uncorrected in memory at address 0x%x as it's located outside SDRAM and OCM address range" 
+  >
+  <comment>SBE left uncorrected in memory as it's located outside SDRAM and OCM address range</comment>
+    <args>
+      <arg
+        name="addr"
+        type="U32"
+      >
+        <comment>Failing address</comment>
+      </arg>
+    </args>
+  </event>
+</events>    

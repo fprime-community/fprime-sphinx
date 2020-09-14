@@ -1,0 +1,12 @@
+<commands>
+    <command kind="async" opcode="0x0" mnemonic="APP_FATAL_HDLR_FATAL" >
+        <comment>
+        Command FATAL
+        </comment>
+    </command>
+    <command kind="async" opcode="0x1" mnemonic="APP_FATAL_HDLR_CLEAR_OCM" >
+        <comment>
+        Command clear OCM Fatal buffer
+        </comment>
+    </command>
+</commands>

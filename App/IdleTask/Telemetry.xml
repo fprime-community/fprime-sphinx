@@ -1,0 +1,41 @@
+<telemetry>
+  <channel id="0x00" name="IdleTask_sbe" data_type="U32" abbrev="Idle-0000">
+    <comment>Count of SBEs</comment>
+  </channel>
+  <channel id="0x01" name="IdleTask_dbe" data_type="U32" abbrev="Idle-0001">
+    <comment>Count of DBEs</comment>
+  </channel>
+  <channel id="0x02" name="IdleTask_sbe_loc1" data_type="U32" abbrev="Idle-0002">
+    <comment>SBE location 1</comment>
+  </channel>
+  <channel id="0x03" name="IdleTask_sbe_loc2" data_type="U32" abbrev="Idle-0003">
+    <comment>SBE location 2</comment>
+  </channel>
+  <channel id="0x04" name="IdleTask_sbe_loc3" data_type="U32" abbrev="Idle-0004">
+    <comment>SBE location 3</comment>
+  </channel>
+  <channel id="0x05" name="IdleTask_sbe_loc4" data_type="U32" abbrev="Idle-0005">
+    <comment>SBE location 4</comment>
+  </channel>
+  <channel id="0x06" name="IdleTask_sbe_loc5" data_type="U32" abbrev="Idle-0006">
+    <comment>SBE location 5</comment>
+  </channel>
+  <channel id="0x07" name="IdleTask_dbe_loc1" data_type="U32" abbrev="Idle-0007">
+    <comment>DBE location 1</comment>
+  </channel>
+  <channel id="0x08" name="IdleTask_dbe_loc2" data_type="U32" abbrev="Idle-0008">
+    <comment>DBE location 2</comment>
+  </channel>
+  <channel id="0x09" name="IdleTask_dbe_loc3" data_type="U32" abbrev="Idle-0009">
+    <comment>DBE location 3</comment>
+  </channel>
+  <channel id="0x10" name="IdleTask_dbe_loc4" data_type="U32" abbrev="Idle-0010">
+    <comment>DBE location 4</comment>
+  </channel>
+  <channel id="0x11" name="IdleTask_dbe_loc5" data_type="U32" abbrev="Idle-0011">
+    <comment>DBE location 5</comment>
+  </channel>
+  <channel id="0x12" name="IdleTask_Power_On_Reset_Count" data_type="U32" abbrev="Idle-0012">
+    <comment>Power on reset count value. This is incremented by 1 upon each hard power cycle of CDH</comment>
+  </channel>
+</telemetry>

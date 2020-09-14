@@ -1,0 +1,245 @@
+<events>
+  <event id="0" name="DriverTestGpioSetHigh" severity="ACTIVITY_HI" format_string="Setting GPIO pin %u high.">
+    <comment>
+      Inform that the specified pin is being set high
+    </comment>
+    <args>
+      <arg name="gpio_pin" type="U32">
+        <comment>gpio pin number that was passed in as an arugment to comment</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="1" name="DriverTestGpioSetLow" severity="ACTIVITY_HI" format_string="Setting GPIO pin %u low.">
+    <comment>
+      Inform that the specified pin is being set low
+    </comment>
+    <args>
+      <arg name="gpio_pin" type="U32">
+        <comment>gpio pin number that was passed in as an arugment to comment</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="2" name="DriverTestGpioState" severity="ACTIVITY_HI" format_string="GPIO pin %d state is now %u.">
+    <comment>
+      The state of specified pin after modifying it
+    </comment>
+    <args>
+      <arg name="gpio_pin" type="U32">
+        <comment>gpio pin number that was passed in as an arugment to comment</comment>
+      </arg>
+      <arg name="state" type="U32">
+        <comment>State of pin. 1=High, 0=Low</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="3" name="DriverTestFpgaGpioSetHigh" severity="ACTIVITY_HI" format_string="Setting FPGA GPIO pin %u high.">
+    <comment>
+      Inform that the specified pin is being set high
+    </comment>
+    <args>
+      <arg name="fpga_gpio_pin" type="U32">
+        <comment>fpga gpio pin number that was passed in as an arugment to comment</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="4" name="DriverTestFpgaGpioSetLow" severity="ACTIVITY_HI" format_string="Setting FPGA GPIO pin %u low.">
+    <comment>
+      Inform that the specified pin is being set low
+    </comment>
+    <args>
+      <arg name="fpga_gpio_pin" type="U32">
+        <comment>fpga gpio pin number that was passed in as an arugment to comment</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="5" name="DriverTestFpgaGpioState" severity="ACTIVITY_HI" format_string="FPGA GPIO pin %d state is now %u.">
+    <comment>
+      The state of specified pin after modifying it
+    </comment>
+    <args>
+      <arg name="fpga_gpio_pin" type="U32">
+        <comment>fpga gpio pin number that was passed in as an arugment to comment</comment>
+      </arg>
+      <arg name="state" type="U32">
+        <comment>State of pin. 1=High, 0=Low</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="6" name="DriverTestHwUartRead" severity="ACTIVITY_HI" format_string="Byte read 0x%02X">
+    <comment>
+      Report byte read from hardware uart
+    </comment>
+    <args>
+      <arg name="byte" type="U8">
+        <comment>Byte read from hardware uart</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="7" name="DriverTestHwUartReadFail" severity="WARNING_HI" format_string="Failed to read byte with error status %d.">
+    <comment>
+      Report error status from reading from hardware uart
+    </comment>
+    <args>
+      <arg name="status" type="I32">
+        <comment>Status error for reading from hardware uart</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="8" name="DriverTestHwUartWrite" severity="ACTIVITY_HI" format_string="Byte write 0x%02X">
+    <comment>
+      Report byte write to hardware uart
+    </comment>
+    <args>
+      <arg name="byte" type="U8">
+        <comment>Byte write to hardware uart</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="9" name="DriverTestHwUartWriteFail" severity="WARNING_HI" format_string="Failed to write byte with error status %d.">
+    <comment>
+      Report error status from writing to hardware uart
+    </comment>
+    <args>
+      <arg name="status" type="I32">
+        <comment>Status error for writing to hardware uart</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="10" name="DriverTestFwUartRead" severity="ACTIVITY_HI" format_string="Byte read 0x%02X">
+    <comment>
+      Report byte read from firmware uart
+    </comment>
+    <args>
+      <arg name="byte" type="U8">
+        <comment>Byte read from firmware uart</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="11" name="DriverTestFwUartReadFail" severity="WARNING_HI" format_string="Failed to read byte with error status %d.">
+    <comment>
+      Report error status from reading from firmware uart
+    </comment>
+    <args>
+      <arg name="status" type="I32">
+        <comment>Status error for reading from firmware uart</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="12" name="DriverTestFwUartWrite" severity="ACTIVITY_HI" format_string="Byte write 0x%02X">
+    <comment>
+      Report byte write to firmware uart
+    </comment>
+    <args>
+      <arg name="byte" type="U8">
+        <comment>Byte write to firmware uart</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="13" name="DriverTestFwUartWriteFail" severity="WARNING_HI" format_string="Failed to write byte with error status %d.">
+    <comment>
+      Report error status from writing to firmware uart
+    </comment>
+    <args>
+      <arg name="status" type="I32">
+        <comment>Status error for writing to firmware uart</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="14" name="DriverTestFpgaSpiRw" severity="ACTIVITY_HI" format_string="Wrote byte 0x%02X and read byte 0x%02X from slave device %u.">
+    <comment>
+      Successfully read/wrote byte from/to SPI device
+    </comment>
+    <args>
+      <arg name="wrote" type="U8">
+        <comment>Byte written to SPI</comment>
+      </arg>
+      <arg name="read" type="U8">
+        <comment>Byte read from SPI</comment>
+      </arg>
+      <arg name="slave_device" type="U8">
+        <comment>slave device</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="15" name="DriverTestFpgaSpiRwFail" severity="WARNING_HI" format_string="Failed to read/write from slave device %u with error status %d.">
+    <comment>
+      Failed to read/wrote byte from/to SPI device
+    </comment>
+    <args>
+      <arg name="slave_device" type="U8">
+        <comment>slave device.</comment>
+      </arg>
+      <arg name="status" type="I32">
+        <comment>error status</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="16" name="DriverTestSpiRwDeselect" severity="WARNING_HI" format_string="Failed to deselect slave select %u. Error status %d.">
+    <comment>
+      Failed to deselect slave select
+    </comment>
+    <args>
+      <arg name="slave_device" type="U8">
+        <comment>slave device.</comment>
+      </arg>
+      <arg name="status" type="I32">
+        <comment>error status</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="17" name="DriverTestSpiRwSelect" severity="WARNING_HI" format_string="Failed to select slave select %u. Error status %d.">
+    <comment>
+      Failed to select slave select
+    </comment>
+    <args>
+      <arg name="slave_device" type="U8">
+        <comment>slave device.</comment>
+      </arg>
+      <arg name="status" type="I32">
+        <comment>error status</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="18" name="DriverTestSpiRwFail" severity="WARNING_HI" format_string="Failed to read/write from slave device %u with error status %d.">
+    <comment>
+      Failed to read/wrote byte from/to SPI device
+    </comment>
+    <args>
+      <arg name="slave_device" type="U8">
+        <comment>slave device.</comment>
+      </arg>
+      <arg name="status" type="I32">
+        <comment>error status</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="19" name="DriverTestSpiRwReleaseFail" severity="WARNING_HI" format_string="Failed to release and unclaim slave device %u. Error status %d.">
+    <comment>
+      Failed to release and/or unclaim
+    </comment>
+    <args>
+      <arg name="slave_device" type="U8">
+        <comment>slave device.</comment>
+      </arg>
+      <arg name="status" type="I32">
+        <comment>error status</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="20" name="DriverTestSpiRw" severity="ACTIVITY_HI" format_string="Wrote byte 0x%02X and read byte 0x%02X from slave device %u.">
+    <comment>
+      Successfully read/wrote byte from/to SPI device
+    </comment>
+    <args>
+      <arg name="wrote" type="U8">
+        <comment>Byte written to SPI</comment>
+      </arg>
+      <arg name="read" type="U8">
+        <comment>Byte read from SPI</comment>
+      </arg>
+      <arg name="slave_device" type="U8">
+        <comment>slave device</comment>
+      </arg>
+    </args>
+  </event>
+</events>    

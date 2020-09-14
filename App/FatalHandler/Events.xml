@@ -1,0 +1,77 @@
+<events>
+    <event id="0" name="AppFatalHandler_Test" severity="WARNING_LO" format_string = "AppFatalHandlerTest %d num" >
+        <comment>
+        Test num
+        </comment>
+        <args>
+            <arg name="num" type="U32" >
+                <comment>bytes received</comment>
+            </arg>
+        </args>
+    </event>
+    <event id="1" name="AppFatalHandler_OcmFull" severity="WARNING_HI" format_string = "Device's OCM is full %d" >
+        <comment>
+          Registers when the OCM is a certain ammount full.
+        </comment>
+        <args>
+            <arg name="num" type="U32" >
+                <comment>percent full</comment>
+            </arg>
+        </args>
+    </event>
+    <event id="2" name="AppFatalHandler_OcmClear" severity="ACTIVITY_HI" format_string="Cleared the device's OCM">
+        <comment>
+          Reports when the clear command has been run
+        </comment>
+    </event>
+    <event id="3" name="AppFatalHandler_ForcedFatal" severity="FATAL" format_string="User commanded a fatal event. Test bytes: %x, %x, and %x">
+        <comment>
+          A fatal event that has been forced by a command
+        </comment>
+        <!-- Since this is an internally generate commands, we include some test bytes -->
+        <args>
+            <arg name="test_byte_0" type="U8" >
+                <comment>first test byte</comment>
+            </arg>
+            <arg name="test_byte_1" type="U8" >
+                <comment>second test byte</comment>
+            </arg>
+            <arg name="test_byte_3" type="U8" >
+                <comment>third test byte</comment>
+            </arg>
+        </args>
+    </event>
+    <event id="4" name="AppFatalHandler_DO_ASSERT" severity="FATAL" format_string = "%s" >
+        <comment>This is called by the assert hook. </comment>
+        <args>
+            <arg name="assert_hook_msg" type="string" size="256">
+                <comment>The message passed to ASSERT.</comment>
+            </arg>
+        </args>
+    </event>
+    <event id="5" name="AppFatalHandler_OCM_NOT_INITIALIZED" severity="WARNING_HI" format_string = "OCM memory is not initialized. Send command FSWINFO_INIT_SRAM_VALS" >
+        <comment>This is called when OCM not setup.</comment>
+    </event>
+    <event id="6" name="AppFatalHandler_OcmInvalidSize" severity="WARNING_HI" format_string = "A fatal stored in OCM has an invalid size, please clear fatals" >
+        <comment>If a bad size was seen, send a warning.</comment>
+    </event>
+    <event id="7" name="AppFatalHandler_Trapped" severity="FATAL" format_string = "Trap %x occurred, system rebooted" >
+        <comment>This is serialized to OCM (not sent) by the trap handler.</comment>
+        <args>
+            <arg name="trap_number" type="U32" >
+                <comment>The trap number that occurred.</comment>
+            </arg>
+        </args>
+    </event>
+    <event id="8" name="AppFatalHandler_DbeTrapped" severity="FATAL" format_string = "DBE trap (0x%x) occurred at address: 0x%x" >
+        <comment>This is serialized to OCM (not sent) by the trap handler.</comment>
+        <args>
+            <arg name="trap_number" type="U32" >
+                <comment>The trap number that occurred.</comment>
+            </arg>
+            <arg name="dbe_number" type="U32" >
+                <comment>The traped address.</comment>
+            </arg>
+        </args>
+    </event>
+</events>    

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="file:../xml/ISF_Component_Schema.rnc" type="compact"?>
+<serializable namespace="App" name="IdleTaskPwrOnResetCnt">
+    <comment>
+      Idle Task power on reset count
+    </comment>
+    <members>
+      <member name="PwrOnResetCnt" type="U32"/>
+    </members>
+</serializable>

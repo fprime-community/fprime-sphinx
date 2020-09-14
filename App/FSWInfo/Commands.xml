@@ -1,0 +1,83 @@
+<commands>
+    <command kind="async" opcode="0x0" mnemonic="FSWINFO_DMP" >
+        <comment>
+          Report various FSW info (FSW version, Firmware version and SRAM boot count)
+        </comment>
+    </command>
+    <command kind="async" opcode="0x1" mnemonic="FSWINFO_RESET_FSW" >
+        <comment>
+          Perform a soft reset of flight software
+        </comment>
+    </command>
+    <command kind="async" opcode="0x2" mnemonic="FSWINFO_INIT_SRAM_VALS" >
+        <comment>
+          Activates SRAM flag
+        </comment>
+    </command>
+    <command kind="async" opcode="0x3" mnemonic="FSWINFO_TIME_UPDT_ABS" >
+        <comment>
+          Update SCLK value with absolute time second and sub-second values
+        </comment>
+        <args>
+          <arg name="secs" type="U32">
+            <comment> Whole seconds value to use when updating time </comment>
+          </arg>
+          <arg name="usecs" type="U32">
+            <comment> Sub-seconds value to use when updating time </comment>
+          </arg>
+        </args>
+    </command>
+    <command kind="async" opcode="0x4" mnemonic="FSWINFO_TIME_UPDT_REL" >
+        <comment>
+          Increment current SCLK value with relative time second and sub-second values
+        </comment>
+        <args>
+          <arg name="secs" type="U32">
+            <comment> Whole seconds value to use when updating time </comment>
+          </arg>
+          <arg name="usecs" type="U32">
+            <comment> Sub-seconds value to use when updating time </comment>
+          </arg>
+        </args>
+    </command>
+    <command kind="async" opcode="0x5" mnemonic="FSWINFO_FPGA_WDOG_TIME_LEFT_DMP" >
+        <comment>
+          Dump value of Sphinx FPGA watchdog time left register
+        </comment>
+    </command>
+    <command kind="async" opcode="0x6" mnemonic="FSWINFO_READ_REG" >
+        <comment>
+          Read contents of a 4-byte register and output value to an event. The address must be 4-byte aligned. NOTE: This command must be used with caution to specify a valid 4-byte address to read from. Attempting to read from an invalid address may result in a trap exception or software crash leading to a soft reset or Sphinx watchdog timer expiration.
+        </comment>
+        <args>
+          <arg name="address" type="U32">
+            <comment>4-byte aligned memory location address to read from</comment>
+          </arg>
+          <arg name="lock" type="U8">
+            <comment>Lock value for command</comment>
+          </arg>
+          <arg name="key" type="U8">
+            <comment>Key value for command, must be complement of lock value for command to execute.</comment>
+          </arg>
+        </args>
+    </command>
+    <command kind="async" opcode="0x7" mnemonic="FSWINFO_WRITE_REG" >
+        <comment>
+          Write a 4-byte value to a location in memory. The address must be 4-byte aligned. NOTE: This command must be used with caution to specify a valid 4-byte address to be written. Attempting to write to an invalid address may result in a trap exception or software crash leading to a soft reset or Sphinx watchdog timer expiration. Also, writing to a memory location using this command may result in a possible race condition.
+        </comment>
+        <args>
+          <arg name="address" type="U32">
+            <comment>4-byte aligned memory location address to be written</comment>
+          </arg>
+          <arg name="value" type="U32">
+            <comment>Value to be written at specified memory location</comment>
+          </arg>
+          <arg name="lock" type="U8">
+            <comment>Lock value for command</comment>
+          </arg>
+          <arg name="key" type="U8">
+            <comment>Key value for command, must be complement of lock value for command to execute.</comment>
+          </arg>
+        </args>
+    </command>
+</commands>

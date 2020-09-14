@@ -1,0 +1,9 @@
+#ifndef APP_FPGA_GPIO_DEF_ATB_HPP
+#define APP_FPGA_GPIO_DEF_ATB_HPP
+#include <Fw/Types/BasicTypes.hpp>
+
+extern const NATIVE_UINT_TYPE FPGA_GPIO_TOTAL_AVAIL_PINS;
+extern const NATIVE_UINT_TYPE FPGA_GPIO_LENGTH;
+extern NATIVE_UINT_TYPE FPGA_GPIO_PINS_ENABLE[];
+
+#endif

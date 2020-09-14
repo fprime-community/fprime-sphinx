@@ -1,0 +1,124 @@
+<commands>
+    <command kind="async" opcode="0x0" mnemonic="DRIVER_TEST_SPI_READ_WRITE" >
+        <comment>
+        Generic Read/Write a byte from/to the spi slave device. Note: before reading a byte from a SPI device, you must write a byte to it.
+        </comment>
+        <args>
+             <arg name="slave_select" type="U8">
+                <comment>SPI slave select gpio pin</comment>
+             </arg>
+             <arg name="byte" type="U8">
+                <comment>byte to write</comment>
+             </arg>
+              <arg name="timeout" type="U16">
+                <comment>SPI timeout</comment>
+              </arg>
+        </args>
+    </command>
+    <command kind="async" opcode="0x1" mnemonic="DRIVER_TEST_FPGA_SPI_READ_WRITE" >
+        <comment>
+        Read/Write a byte from/to the FPGA spi slave device
+        </comment>
+        <args>
+             <arg name="slave_select" type="ENUM">
+                <enum name="FpgaSpiSlaveSelect">
+                  <item name="FPGA_SPI_SLAVE_SELECT_0" value="0"/>
+                  <item name="FPGA_SPI_SLAVE_SELECT_1" value="1"/>
+                  <item name="FPGA_SPI_SLAVE_SELECT_2" value="2"/>
+                  <item name="FPGA_SPI_SLAVE_SELECT_3" value="3"/>
+                  <item name="FPGA_SPI_SLAVE_SELECT_4" value="4"/>
+                  <item name="FPGA_SPI_SLAVE_SELECT_5" value="5"/>
+                  <item name="FPGA_SPI_SLAVE_SELECT_6" value="6"/>
+                  <item name="FPGA_SPI_SLAVE_SELECT_7" value="7"/>
+                </enum>
+                <comment>SPI slave device</comment>
+             </arg>
+             <arg name="byte" type="U8">
+                <comment>byte to write</comment>
+             </arg>
+             <arg name="clock_bitrate" type="ENUM">
+                <enum name="FpgaSpiBitrate">
+                  <item name="BITRATE_10_MBS" value="0" comment="10 megabits per second"/>
+                  <item name="BITRATE_2_5_MBS" value="1" comment="2.5 megabits per second"/>
+                  <item name="BITRATE_1_25_MBS" value="2" comment="1.25 megabits per second"/>
+                  <item name="BITRATE_0_769_MBS" value="3" comment="0.769 megabits per second"/>
+                </enum>
+                <comment>byte to write</comment>
+             </arg>
+              <arg name="timeout" type="U16">
+                <comment>SPI timeout</comment>
+              </arg>
+             <arg name="bit_order" type="ENUM">
+                <enum name="FpgaSpiBitOrder">
+                  <item name="LSB_FIRST" value="0" />
+                  <item name="MSB_FIRST" value="1" />
+                </enum>
+                <comment>byte to write</comment>
+             </arg>
+        </args>
+    </command>
+    <command kind="async" opcode="0x2" mnemonic="DRIVER_TEST_GPIO_SET" >
+        <comment>
+        Set GPIO pin High or Low
+        </comment>
+        <args>
+             <arg name="gpio_pin" type="U32">
+                 <comment>GPIO pin number</comment>
+             </arg>
+             <arg name="state" type="ENUM">
+                 <enum name="GpioState">
+                     <item name="HIGH" value="1" comment="Set GPIO high."/>
+                     <item name="LOW" value="0" comment="Set GPIO low."/>
+                 </enum>
+                 <comment>The state to set gpio_pin</comment>
+             </arg>
+        </args>
+    </command>
+    <command kind="async" opcode="0x3" mnemonic="DRIVER_TEST_FPGA_GPIO_SET" >
+        <comment>
+        Set FPGA GPIO pin High or Low
+        </comment>
+        <args>
+             <arg name="fpga_gpio_pin" type="U32">
+                 <comment>FPGA GPIO pin number</comment>
+             </arg>
+             <arg name="state" type="ENUM">
+                 <enum name="FpgaGpioState">
+                     <item name="FPGA_HIGH" value="1" comment="Set FPGA GPIO high."/>
+                     <item name="FPGA_LOW" value="0" comment="Set FPGA GPIO low."/>
+                 </enum>
+                 <comment>The state to set fpga_gpio_pin</comment>
+             </arg>
+        </args>
+    </command>
+    <command kind="async" opcode="0x4" mnemonic="DRIVER_TEST_HW_UART_READ" >
+        <comment>
+        Read a byte from the hardware UART (assumes SphinxUartOnboardDriver is constructed with UART 5)
+        </comment>
+    </command>
+    <command kind="async" opcode="0x5" mnemonic="DRIVER_TEST_HW_UART_WRITE" >
+        <comment>
+        Write a byte to the hardware UART (assumes SphinxUartOnboardDriver is constructed with UART 5)
+        </comment>
+        <args>
+             <arg name="byte" type="U8">
+                 <comment>Byte to write to HW UART</comment>
+             </arg>
+        </args>
+    </command>
+    <command kind="async" opcode="0x6" mnemonic="DRIVER_TEST_FW_UART_READ" >
+        <comment>
+        Read a byte from the firmware UART (assumes SphinxUartOnboardDriver is constructed with UART 7)
+        </comment>
+    </command>
+    <command kind="async" opcode="0x7" mnemonic="DRIVER_TEST_FW_UART_WRITE" >
+        <comment>
+        Write a byte to the firmware UART (assumes SphinxUartOnboardDriver is constructed with UART 7)
+        </comment>
+        <args>
+             <arg name="byte" type="U8">
+                 <comment>Byte to write to FW UART</comment>
+             </arg>
+        </args>
+    </command>
+</commands>

@@ -1,0 +1,17 @@
+<commands>
+    <command kind="sync" opcode="0x0" mnemonic="IDLE_TASK_SET_PWR_ON_RST_CNT" >
+        <comment>
+        Set a new power on reset count value. NOTE: PRM_SAVE_FILE command must be sent after setting new value for it to be stored in non-volatile prmDb file.
+        </comment>
+        <args>
+          <arg name="value" type="U32">
+            <comment>Power on reset count value to be set</comment>
+          </arg>
+        </args>
+    </command>
+    <command kind="sync" opcode="0x1" mnemonic="IDLE_TASK_DMP_PWR_ON_RST_CNT" >
+        <comment>
+        Dump currently active power on reset (POR) count value, i.e. hard boot count.
+        </comment>
+    </command>
+</commands>

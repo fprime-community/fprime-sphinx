@@ -1,0 +1,95 @@
+<component name="DriverTest" kind="active" namespace="App" >
+
+    <import_port_type>Fw/Cmd/CmdRegPortAi.xml</import_port_type>
+    <import_port_type>Fw/Log/LogPortAi.xml</import_port_type>
+    <import_port_type>Svc/Ping/PingPortAi.xml</import_port_type>
+    <import_port_type>Fw/Cmd/CmdResponsePortAi.xml</import_port_type>
+    <import_port_type>Fw/Time/TimePortAi.xml</import_port_type>
+    <import_port_type>Fw/Cmd/CmdPortAi.xml</import_port_type>
+    <import_port_type>Svc/Sched/SchedPortAi.xml</import_port_type>
+    <import_port_type>fprime-sphinx-drivers/Ports/SphinxSPI_Unclaim/SphinxSPI_UnclaimPortAi.xml</import_port_type>
+    <import_port_type>fprime-sphinx-drivers/Ports/SphinxSPI_Claim/SphinxSPI_ClaimPortAi.xml</import_port_type>
+    <import_port_type>fprime-sphinx-drivers/Ports/SphinxSPI_RW_Generic/SphinxSPI_RW_GenericPortAi.xml</import_port_type>
+    <import_port_type>fprime-sphinx-drivers/Ports/SphinxFPGASPI_RW/SphinxFPGASPI_RWPortAi.xml</import_port_type>
+    <import_port_type>fprime-sphinx-drivers/Ports/SphinxGPIO_WritePin/SphinxGPIO_WritePinPortAi.xml</import_port_type>
+    <import_port_type>fprime-sphinx-drivers/Ports/SphinxGPIO_ReadPin/SphinxGPIO_ReadPinPortAi.xml</import_port_type>
+    <import_port_type>fprime-sphinx-drivers/Ports/SphinxUart_readPort/SphinxUart_readPortPortAi.xml</import_port_type>
+    <import_port_type>fprime-sphinx-drivers/Ports/SphinxUart_writePort/SphinxUart_writePortPortAi.xml</import_port_type>
+    <import_dictionary>App/DriverTest/Commands.xml</import_dictionary>
+    <import_dictionary>App/DriverTest/Events.xml</import_dictionary>
+
+    <ports>
+    
+
+        <port name="cmdRegOut" data_type="Fw::CmdReg"  kind="output" role="CmdRegistration"    max_number="1">
+        </port>
+
+        <port name="eventOut" data_type="Fw::Log"  kind="output" role="LogEvent"    max_number="1">
+        </port>
+
+        <port name="PingResponse" data_type="Svc::Ping"  kind="output"    max_number="1">
+        </port>
+
+        <port name="PingRecv" data_type="Svc::Ping"  kind="async_input"    max_number="1">
+        </port>
+
+        <port name="cmdResponseOut" data_type="Fw::CmdResponse"  kind="output" role="CmdResponse"    max_number="1">
+        </port>
+
+        <port name="timeCaller" data_type="Fw::Time"  kind="output" role="TimeGet"    max_number="1">
+        </port>
+
+        <port name="cmdIn" data_type="Fw::Cmd"  kind="input" role="Cmd"    max_number="1">
+        </port>
+
+        <port name="schedIn" data_type="Svc::Sched"  kind="async_input"    max_number="1">
+        </port>
+
+        <!-- SPI -->
+        <port name="fpgaSpiRw" data_type="Drv::SphinxFPGASPI_RW"  kind="output"    max_number="1">
+        </port>
+
+        <port name="spiUnclaim" data_type="Drv::SphinxSPI_Unclaim"  kind="output"    max_number="1">
+        </port>
+
+        <port name="spiClaim" data_type="Drv::SphinxSPI_Claim"  kind="output"    max_number="1">
+        </port>
+
+        <port name="spiRw8" data_type="Drv::SphinxSPI_RW_Generic"  kind="output"    max_number="1">
+        </port>
+
+        <!-- GPIO -->
+        <port name="gpioSet" data_type="Drv::SphinxGPIO_WritePin"  kind="output"    max_number="1">
+        </port>
+
+        <port name="gpioClear" data_type="Drv::SphinxGPIO_WritePin"  kind="output"    max_number="1">
+        </port>
+
+        <port name="gpioRead" data_type="Drv::SphinxGPIO_ReadPin"  kind="output"    max_number="1">
+        </port>
+
+        <port name="fpgaGpioSet" data_type="Drv::SphinxGPIO_WritePin"  kind="output"    max_number="1">
+        </port>
+
+        <port name="fpgaGpioClear" data_type="Drv::SphinxGPIO_WritePin"  kind="output"    max_number="1">
+        </port>
+
+        <port name="fpgaGpioRead" data_type="Drv::SphinxGPIO_ReadPin"  kind="output"    max_number="1">
+        </port>
+
+        <!-- UART -->
+        <port name="hwUartRx" data_type="Drv::SphinxUart_readPort"  kind="output"    max_number="1">
+        </port>
+
+        <port name="hwUartTx" data_type="Drv::SphinxUart_writePort"  kind="output"    max_number="1">
+        </port>
+
+        <port name="fwUartRx" data_type="Drv::SphinxUart_readPort"  kind="output"    max_number="1">
+        </port>
+
+        <port name="fwUartTx" data_type="Drv::SphinxUart_writePort"  kind="output"    max_number="1">
+        </port>
+
+    </ports>
+
+</component>

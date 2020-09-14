@@ -1,0 +1,102 @@
+<events>
+    <event id="0" name="FSWVersion" severity="ACTIVITY_LO" format_string = "FSW Version: %s">
+        <comment>
+          FSW build version
+        </comment>
+        <args>
+            <arg name="ver" type="string" size="80" >
+                <comment>version string</comment>
+            </arg>          
+        </args>
+    </event>
+  <event id="1" name="NewTime_ABS_Invalid" severity="WARNING_HI" format_string="New time ABS second value (%u) must be larger than current time second value (%u)">
+    <comment>
+     New commanded abosulte whole second value is older than or same as current time second value which is not valid.
+    </comment>
+    <args>
+      <arg name="new_secs" type="U32">
+        <comment>New time whole seconds</comment>
+      </arg>
+      <arg name="curr_secs" type="U32">
+        <comment>Current time whole seconds</comment>
+      </arg>
+    </args>
+  </event>
+  <event id="2" name="FirmwareVersion" severity="ACTIVITY_LO" format_string="Sphinx firmware version: 0x%x">
+    <comment>Value as read from Sphinx firmware version register</comment>
+    <args>
+      <arg name="val" type="U32">
+        <comment>Value of Sphinx firmware version register</comment>
+      </arg>
+    </args>
+  </event>
+
+  <event id="3" name="FPGAWatchDogTimeLeft" severity="ACTIVITY_HI" format_string="Time left before Sphinx FPGA watchdog timer expires: %u seconds">
+    <comment>Value as read from Sphinx FPGA watchdog time left register</comment>
+    <args>
+      <arg name="val" type="U32">
+        <comment>Value of Sphinx FPGA watchdog time left register</comment>
+      </arg>
+    </args>
+  </event>
+
+  <event id="4" name="FSWInfo_ReadReg" severity="ACTIVITY_HI" format_string="Value read from memory location 0x%x is 0x%x">
+    <comment>Value as read from specified memory location</comment>
+    <args>
+      <arg name="addr" type="U32">
+        <comment>Memory location address read</comment>
+      </arg>
+      <arg name="val" type="U32">
+        <comment>Value at memory location</comment>
+      </arg>
+    </args>
+  </event>
+
+  <event id="5" name="FSWInfo_WriteRegSucc" severity="ACTIVITY_HI" format_string="Successfully updated memory location 0x%x with value 0x%x">
+    <comment>Value as read from specified memory location</comment>
+    <args>
+      <arg name="addr" type="U32">
+        <comment>Memory location address written</comment>
+      </arg>
+      <arg name="val" type="U32">
+        <comment>Value at memory location</comment>
+      </arg>
+    </args>
+  </event>
+
+  <event id="6" name="FSWInfo_WriteRegFail" severity="WARNING_HI" format_string="Failed to update memory location 0x%x with value 0x%x. Value at memory location read back as 0x%x">
+    <comment>Value as read from specified memory location</comment>
+    <args>
+      <arg name="addr" type="U32">
+        <comment>Memory location address written</comment>
+      </arg>
+      <arg name="val" type="U32">
+        <comment>Value at memory location expected after write operation</comment>
+      </arg>
+      <arg name="currVal" type="U32">
+        <comment>Value at memory location read back after write operation</comment>
+      </arg>
+    </args>
+  </event>
+
+  <event id="7" name="FSWInfo_LockKey_Mismatch" severity="WARNING_HI" format_string="Failed to verify lock (%u) and key (%u) values are complements of each other.">
+    <comment>Value as read from specified memory location</comment>
+    <args>
+      <arg name="lock" type="U8">
+        <comment>Lock value</comment>
+      </arg>
+      <arg name="key" type="U8">
+        <comment>Key value</comment>
+      </arg>
+    </args>
+  </event>
+
+  <event id="8" name="FSWInfo_Address_Misaligned" severity="WARNING_HI" format_string="Failed to validate address alignment as address 0x%x is not 4-byte aligned.">
+    <comment>Read/write memory operations can only be performed on 4-byte aligned addresses.</comment>
+    <args>
+      <arg name="address" type="U32">
+        <comment>Misaligned address</comment>
+      </arg>
+    </args>
+  </event>
+</events>    

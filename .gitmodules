@@ -1,0 +1,9 @@
+[submodule "fprime-sphinx-drivers"]
+	path = fprime-sphinx-drivers
+	url = https://github.com/fprime-community/fprime-sphinx-drivers.git
+[submodule "fprime-vxworks"]
+	path = fprime-vxworks
+	url = https://github.com/fprime-community/fprime-vxworks.git
+[submodule "fprime"]
+	path = fprime
+	url = https://github.com/nasa/fprime.git
