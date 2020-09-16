@@ -486,7 +486,11 @@
 
     <!-- Time Connections -->
 
-    <connection name = "prmDbTime">
+    <connection name = "sphinxTimeTime">
+        <source component = "sphinxTime" port = "timeCaller" type = "Time" num = "0"/>
+        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
+    </connection>
+     <connection name = "prmDbTime">
         <source component = "prmDb" port = "Time" type = "Time" num = "0"/>
         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
     </connection>
