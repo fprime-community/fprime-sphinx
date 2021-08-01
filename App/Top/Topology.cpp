@@ -90,7 +90,7 @@ Drv::UartDriverComponentImpl uartDriver("uartDriver", "/tyCo/0", 115200);
 
 Svc::FileUplink fileUplink ("fileUplink");
 
-Svc::FileDownlink fileDownlink ("fileDownlink", DOWNLINK_PACKET_SIZE);
+Svc::FileDownlink fileDownlink ("fileDownlink");
 
 Svc::BufferManagerComponentImpl fileDownlinkBufferManager("fileDownlinkBufferManager");
 
@@ -185,6 +185,7 @@ bool constructApp(bool dump) {
 
     fileUplink.init(30, 0);
     fileDownlink.init(30, 0);
+    fileDownlink.configure(1000, 1000, 1000, 10);
     fileUplinkBufferManager.init(0);
     fileDownlinkBufferManager.init(1);
     fatalHandler.init(20, 0);
