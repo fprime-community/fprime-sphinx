@@ -12,7 +12,7 @@
 #include <Fw/Obj/SimpleObjRegistry.hpp>
 #include <Svc/FileUplink/FileUplink.hpp>
 #include <Svc/FileDownlink/FileDownlink.hpp>
-#include <Svc/BufferManager/BufferManager.hpp>
+#include <Svc/BufferManager/BufferManagerComponentImpl.hpp>
 #include <Svc/Health/HealthComponentImpl.hpp>
 
 #include <App/PingReceiver/PingReceiverComponentImpl.hpp>
@@ -52,9 +52,9 @@ extern Svc::CommandDispatcherImpl cmdDisp;
 extern Svc::PrmDbImpl prmDb;
 extern Svc::FileUplink fileUplink;
 extern Svc::FileDownlink fileDownlink;
-extern Svc::BufferManager fileDownlinkBufferManager;
-extern Svc::BufferManager fileUplinkBufferManager;
-extern Svc::BufferManager bufferManagerFSWImageManager;
+extern Svc::BufferManagerComponentImpl fileDownlinkBufferManager;
+extern Svc::BufferManagerComponentImpl fileUplinkBufferManager;
+extern Svc::BufferManagerComponentImpl bufferManagerFSWImageManager;
 extern Svc::HealthImpl health;
 
 extern App::PingReceiverComponentImpl pingRcvr;
