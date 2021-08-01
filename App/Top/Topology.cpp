@@ -79,7 +79,7 @@ Svc::TlmChanImpl chanTlm("TLM");
 
 Svc::CommandDispatcherImpl cmdDisp("CMDDISP");
 
-Fw::MallocAllocator seqMallocator;
+Fw::MallocAllocator mallocator;
 Svc::CmdSequencerComponentImpl cmdSeq("CMDSEQ");
 
 Svc::PrmDbImpl prmDb("PRM","PrmDb.dat");
@@ -174,7 +174,7 @@ bool constructApp(bool dump) {
     cmdDisp.init(50,0);
 
     cmdSeq.init(10,0);
-    cmdSeq.allocateBuffer(0,seqMallocator,5*1024);
+    cmdSeq.allocateBuffer(0,mallocator,5*1024);
 
     prmDb.init(10,0);
 
