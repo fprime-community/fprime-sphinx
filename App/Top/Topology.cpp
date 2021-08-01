@@ -21,11 +21,12 @@
 
 // List of context IDs
 enum {
-    DOWNLINK_PACKET_SIZE = 500,
     DOWNLINK_BUFFER_STORE_SIZE = 2500,
     DOWNLINK_BUFFER_QUEUE_SIZE = 5,
     UPLINK_BUFFER_STORE_SIZE = 3000,
-    UPLINK_BUFFER_QUEUE_SIZE = 30
+    UPLINK_BUFFER_QUEUE_SIZE = 30,
+    UPLINK_BUFFER_MGR_ID = 200,
+    DOWNLINK_BUFFER_MGR_ID = 300
 };
 
 Os::Log osLogger;
@@ -91,9 +92,9 @@ Svc::FileUplink fileUplink ("fileUplink");
 
 Svc::FileDownlink fileDownlink ("fileDownlink", DOWNLINK_PACKET_SIZE);
 
-Svc::BufferManager fileDownlinkBufferManager("fileDownlinkBufferManager", DOWNLINK_BUFFER_STORE_SIZE, DOWNLINK_BUFFER_QUEUE_SIZE);
+Svc::BufferManagerComponentImpl fileDownlinkBufferManager("fileDownlinkBufferManager");
 
-Svc::BufferManager fileUplinkBufferManager("fileUplinkBufferManager", UPLINK_BUFFER_STORE_SIZE, UPLINK_BUFFER_QUEUE_SIZE);
+Svc::BufferManagerComponentImpl fileUplinkBufferManager("fileUplinkBufferManager");
 
 Svc::HealthImpl health("health");
 
@@ -239,6 +240,19 @@ bool constructApp(bool dump) {
 
     // read parameters
     prmDb.readParamFile();
+
+    // set up BufferManager instances
+    Svc::BufferManagerComponentImpl::BufferBins upBuffMgrBins;
+    memset(&upBuffMgrBins,0,sizeof(upBuffMgrBins));
+    upBuffMgrBins.bins[0].bufferSize = UPLINK_BUFFER_STORE_SIZE;
+    upBuffMgrBins.bins[0].numBuffers = UPLINK_BUFFER_QUEUE_SIZE;
+    fileUplinkBufferManager.setup(UPLINK_BUFFER_MGR_ID,0,mallocator,upBuffMgrBins);
+
+    Svc::BufferManagerComponentImpl::BufferBins downBuffMgrBins;
+    memset(&downBuffMgrBins,0,sizeof(downBuffMgrBins));
+    downBuffMgrBins.bins[0].bufferSize = DOWNLINK_BUFFER_STORE_SIZE;
+    downBuffMgrBins.bins[0].numBuffers = DOWNLINK_BUFFER_QUEUE_SIZE;
+    fileDownlinkBufferManager.setup(DOWNLINK_BUFFER_MGR_ID,0,mallocator,downBuffMgrBins);
 
     // set health ping entries
 
