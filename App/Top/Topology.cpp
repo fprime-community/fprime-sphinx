@@ -21,12 +21,9 @@
 
 // List of context IDs
 enum {
-    DOWNLINK_BUFFER_STORE_SIZE = 2500,
-    DOWNLINK_BUFFER_QUEUE_SIZE = 5,
     UPLINK_BUFFER_STORE_SIZE = 3000,
     UPLINK_BUFFER_QUEUE_SIZE = 30,
-    UPLINK_BUFFER_MGR_ID = 200,
-    DOWNLINK_BUFFER_MGR_ID = 300
+    UPLINK_BUFFER_MGR_ID = 200
 };
 
 Os::Log osLogger;
@@ -91,8 +88,6 @@ Drv::UartDriverComponentImpl uartDriver("uartDriver", "/tyCo/0", 115200);
 Svc::FileUplink fileUplink ("fileUplink");
 
 Svc::FileDownlink fileDownlink ("fileDownlink");
-
-Svc::BufferManagerComponentImpl fileDownlinkBufferManager("fileDownlinkBufferManager");
 
 Svc::BufferManagerComponentImpl fileUplinkBufferManager("fileUplinkBufferManager");
 
@@ -187,7 +182,6 @@ bool constructApp(bool dump) {
     fileDownlink.init(30, 0);
     fileDownlink.configure(1000, 1000, 1000, 10);
     fileUplinkBufferManager.init(0);
-    fileDownlinkBufferManager.init(1);
     fatalHandler.init(20, 0);
     health.init(25,0);
     pingRcvr.init(10);
@@ -248,12 +242,6 @@ bool constructApp(bool dump) {
     upBuffMgrBins.bins[0].bufferSize = UPLINK_BUFFER_STORE_SIZE;
     upBuffMgrBins.bins[0].numBuffers = UPLINK_BUFFER_QUEUE_SIZE;
     fileUplinkBufferManager.setup(UPLINK_BUFFER_MGR_ID,0,mallocator,upBuffMgrBins);
-
-    Svc::BufferManagerComponentImpl::BufferBins downBuffMgrBins;
-    memset(&downBuffMgrBins,0,sizeof(downBuffMgrBins));
-    downBuffMgrBins.bins[0].bufferSize = DOWNLINK_BUFFER_STORE_SIZE;
-    downBuffMgrBins.bins[0].numBuffers = DOWNLINK_BUFFER_QUEUE_SIZE;
-    fileDownlinkBufferManager.setup(DOWNLINK_BUFFER_MGR_ID,0,mallocator,downBuffMgrBins);
 
     // set health ping entries
 

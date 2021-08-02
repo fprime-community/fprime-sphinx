@@ -50,7 +50,6 @@
     <instance namespace="Svc" name="fileUplink" type="FileUplink" base_id="131"  base_id_window="20" />
     <instance namespace="Svc" name="fileUplinkBufferManager" type="BufferManager" base_id="151"  base_id_window="20" />
     <instance namespace="Svc" name="fileDownlink" type="FileDownlink" base_id="171"  base_id_window="20" />
-    <instance namespace="Svc" name="fileDownlinkBufferManager" type="BufferManager" base_id="191"  base_id_window="20" />
     <instance namespace="Svc" name="textLogger" type="PassiveTextLogger" base_id="211"  base_id_window="20" />
     <instance namespace="Svc" name="groundIf" type="GroundInterface" base_id="231"  base_id_window="20" />
     <instance namespace="Drv" name="sphinxTime" type="SphinxTime" base_id="251"  base_id_window="20" />
@@ -294,10 +293,6 @@
         <source component = "cmdDisp" port = "Log" type = "Log" num = "0"/>
         <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
     </connection>
-    <connection name = "FileDownlinkBufferManagerLog">
-        <source component = "fileDownlinkBufferManager" port = "eventOut" type = "Log" num = "0"/>
-        <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
-    </connection>
     <connection name = "CmdSeqLog">
         <source component = "cmdSeq" port = "logOut" type = "Log" num = "0"/>
         <target component = "eventLogger" port = "LogRecv" type = "Log" num = "0"/>
@@ -416,10 +411,6 @@
         <source component = "fileUplink" port = "tlmOut" type = "Tlm" num = "0"/>
         <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
     </connection>
-    <connection name = "FileDownlinkBufferManagerTlm">
-        <source component = "fileDownlinkBufferManager" port = "tlmOut" type = "Tlm" num = "0"/>
-        <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
-    </connection>
     <connection name = "cmdSeqTlm">
         <source component = "cmdSeq" port = "tlmOut" type = "Tlm" num = "0"/>
         <target component = "chanTlm" port = "TlmRecv" type = "Tlm" num = "0"/>
@@ -512,10 +503,6 @@
     </connection>
     <connection name = "rg4Time">
         <source component = "rateGroup4Comp" port = "Time" type = "Time" num = "0"/>
-        <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
-    </connection>
-    <connection name = "fileDownlinkBufferManagerTime">
-        <source component = "fileDownlinkBufferManager" port = "timeCaller" type = "Time" num = "0"/>
         <target component = "sphinxTime" port = "timeGetPort" type = "Time" num = "0"/>
     </connection>
     <connection name = "cmdSeqTime">
