@@ -812,7 +812,7 @@
    
     <connection name = "fileDownlinkBufferManagerBufferReturn">
         <source component = "groundIf" port = "fileDownlinkBufferSendOut" type = "BufferSend" num = "0"/>
-        <target component = "fileDownlinkBufferManager" port = "bufferSendIn" type = "BufferSend" num = "0"/>
+        <target component = "fileDownlink" port = "bufferReturn" type = "BufferSend" num = "0"/>
     </connection>
     <connection name = "fileDownlinkBufferSend">
         <source component = "fileDownlink" port = "bufferSendOut" type = "BufferSend" num = "0"/>
