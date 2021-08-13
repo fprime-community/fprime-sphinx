@@ -278,9 +278,14 @@
 #define FW_ENABLE_TEXT_LOGGING				 1    //!< Indicates whether text logging is turned on
 #endif
 
- // Define the size of the text log string buffer. Should be large enough for format string and arguments
+// Define the size of the text log string buffer. Should be large enough for format string and arguments
 #ifndef FW_LOG_TEXT_BUFFER_SIZE
 #define FW_LOG_TEXT_BUFFER_SIZE              256   //!< Max size of string for text log message
+#endif
+
+// Define the depth of the Os::Logger circular buffer - may not be used on all platforms
+#ifndef FW_LOG_TEXT_BUFFER_DEPTH
+#define FW_LOG_TEXT_BUFFER_DEPTH             100   //!< Max depth of circular buffer for text log message
 #endif
 
 // Define if serializables have toString() method. Turning off will save code space and
