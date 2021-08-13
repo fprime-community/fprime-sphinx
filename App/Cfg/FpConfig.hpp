@@ -337,4 +337,9 @@ enum TimeBase {
 // *** NOTE configuration checks are in Fw/Cfg/ConfigCheck.cpp in order to have
 // the type definitions in Fw/Types/BasicTypes available.
 
+// Needed by vxworks
+#ifndef __UINT32_MAX__
+#define __UINT32_MAX__ 0xffffffff
+#endif
+
 #endif
