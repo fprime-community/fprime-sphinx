@@ -21,11 +21,9 @@
 
 // List of context IDs
 enum {
-    DOWNLINK_PACKET_SIZE = 500,
-    DOWNLINK_BUFFER_STORE_SIZE = 2500,
-    DOWNLINK_BUFFER_QUEUE_SIZE = 5,
     UPLINK_BUFFER_STORE_SIZE = 3000,
-    UPLINK_BUFFER_QUEUE_SIZE = 30
+    UPLINK_BUFFER_QUEUE_SIZE = 30,
+    UPLINK_BUFFER_MGR_ID = 200
 };
 
 Os::Log osLogger;
@@ -78,7 +76,7 @@ Svc::TlmChanImpl chanTlm("TLM");
 
 Svc::CommandDispatcherImpl cmdDisp("CMDDISP");
 
-Fw::MallocAllocator seqMallocator;
+Fw::MallocAllocator mallocator;
 Svc::CmdSequencerComponentImpl cmdSeq("CMDSEQ");
 
 Svc::PrmDbImpl prmDb("PRM","PrmDb.dat");
@@ -89,11 +87,9 @@ Drv::UartDriverComponentImpl uartDriver("uartDriver", "/tyCo/0", 115200);
 
 Svc::FileUplink fileUplink ("fileUplink");
 
-Svc::FileDownlink fileDownlink ("fileDownlink", DOWNLINK_PACKET_SIZE);
+Svc::FileDownlink fileDownlink ("fileDownlink");
 
-Svc::BufferManager fileDownlinkBufferManager("fileDownlinkBufferManager", DOWNLINK_BUFFER_STORE_SIZE, DOWNLINK_BUFFER_QUEUE_SIZE);
-
-Svc::BufferManager fileUplinkBufferManager("fileUplinkBufferManager", UPLINK_BUFFER_STORE_SIZE, UPLINK_BUFFER_QUEUE_SIZE);
+Svc::BufferManagerComponentImpl fileUplinkBufferManager("fileUplinkBufferManager");
 
 Svc::HealthImpl health("health");
 
@@ -173,7 +169,7 @@ bool constructApp(bool dump) {
     cmdDisp.init(50,0);
 
     cmdSeq.init(10,0);
-    cmdSeq.allocateBuffer(0,seqMallocator,5*1024);
+    cmdSeq.allocateBuffer(0,mallocator,5*1024);
 
     prmDb.init(10,0);
 
@@ -184,8 +180,8 @@ bool constructApp(bool dump) {
 
     fileUplink.init(30, 0);
     fileDownlink.init(30, 0);
+    fileDownlink.configure(1000, 1000, 1000, 10);
     fileUplinkBufferManager.init(0);
-    fileDownlinkBufferManager.init(1);
     fatalHandler.init(20, 0);
     health.init(25,0);
     pingRcvr.init(10);
@@ -239,6 +235,13 @@ bool constructApp(bool dump) {
 
     // read parameters
     prmDb.readParamFile();
+
+    // set up BufferManager instances
+    Svc::BufferManagerComponentImpl::BufferBins upBuffMgrBins;
+    memset(&upBuffMgrBins,0,sizeof(upBuffMgrBins));
+    upBuffMgrBins.bins[0].bufferSize = UPLINK_BUFFER_STORE_SIZE;
+    upBuffMgrBins.bins[0].numBuffers = UPLINK_BUFFER_QUEUE_SIZE;
+    fileUplinkBufferManager.setup(UPLINK_BUFFER_MGR_ID,0,mallocator,upBuffMgrBins);
 
     // set health ping entries
 

@@ -14,7 +14,6 @@
 
 #include "GTestBase.hpp"
 #include "App/FSWInfo/FSWInfoComponentImpl.hpp"
-#include "Fw/ComFile/FileBuffer.hpp"
 #include "fprime-sphinx-drivers/Util/SphinxDrvReg.hpp"
 
 namespace App {
