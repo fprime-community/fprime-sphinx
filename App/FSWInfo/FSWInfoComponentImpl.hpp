@@ -13,7 +13,6 @@
 #define FSWInfo_HPP
 
 #include "App/FSWInfo/FSWInfoComponentAc.hpp"
-#include "fprime-sphinx-drivers/Util/SphinxDrvReg.hpp"
 
 // generated and linked at build time
 extern const char* FSW_VERSION;
