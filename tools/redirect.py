@@ -14,6 +14,7 @@ class Redirect:
     self.dev = dev
     self.baud = baud
     self.timeout = 0.5
+    self.MAX_FRAME_SIZE = 4096
 
     self.server = None
     self.uart = None
@@ -41,11 +42,7 @@ class Redirect:
     self.server.connect("tcp://{}:{}".format(self.ip, self.port))
 
   def recv_uart_data(self):
-    #return b"\x00" + secrets.token_bytes(4) + b"\x00"
-    data = b""
-    data = self.uart.read(1)
-    while self.uart.in_waiting:
-        data += self.uart.read(self.uart.in_waiting)
+    data = self.uart.read(self.MAX_FRAME_SIZE)
     return data
 
   def send_sock_data(self, data):
@@ -55,11 +52,8 @@ class Redirect:
     #for request in range(1000):
     while True:
       data = self.recv_uart_data()
-      #print("uart recv: {}".format(data))
-      self.send_sock_data(data)
-      #time.sleep(1)
-      #message = self.server.recv()
-      #print("Received reply %s [ %s ]" % (request, message))
+      if len(data) != 0:
+        self.send_sock_data(data)
 
   def start_tcp_client(self, ip, port):
     #  Do 10 requests, waiting each time for a response
